@@ -16,9 +16,13 @@ export const cryptosReducer = (
 ): CryptosState => {
   switch (action.type) {
     case CryptosActionTypes.GET_CRYPTOS_REQUEST:
-      return { isLoading: true, errors: null, cryptos: [] };
+      return { isLoading: true, errors: null, cryptos: state.cryptos };
     case CryptosActionTypes.GET_CRYPTOS_SUCCESS:
-      return { isLoading: false, errors: null, cryptos: action.payload };
+      return {
+        isLoading: false,
+        errors: null,
+        cryptos: [...state.cryptos, ...action.payload],
+      };
     case CryptosActionTypes.GET_CRYPTOS_FAIL:
       return { isLoading: false, errors: action.payload, cryptos: [] };
     default:

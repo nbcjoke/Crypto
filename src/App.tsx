@@ -1,10 +1,13 @@
 import React from "react";
-import { CryptoList } from "./components/CryptoList";
+
+import { HeaderComponent } from "./components/header";
+import { Router } from "./routes/routes";
 
 function App() {
   return (
     <div className="App">
-      <CryptoList />
+      <HeaderComponent />
+      <Router />
     </div>
   );
 }
