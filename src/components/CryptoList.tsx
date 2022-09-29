@@ -4,6 +4,7 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { AddCryptoButtonComponent } from "./buttons/AddCryptoButton";
 import { Button } from "./buttons/Button";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -89,17 +90,21 @@ export const CryptoList: React.FC = () => {
     <>
       <CryptoItemWrapper>
         {cryptos.map((crypto) => (
-          <CryptoItem key={crypto.id}>
-            <CryptoTitleWrapper>
-              <CryptoName>{crypto.name}</CryptoName>
-              <CryptoSymbol>{crypto.symbol}</CryptoSymbol>
-            </CryptoTitleWrapper>
-            <CryptoRank>Rank: {crypto.rank}</CryptoRank>
-            <CryptoPrice>Price: {crypto.priceUsd}</CryptoPrice>
-            <AddButtonWrapper>
-              <AddCryptoButtonComponent />
-            </AddButtonWrapper>
-          </CryptoItem>
+          <Link to={`crypto/${crypto.id}`}>
+            <CryptoItem key={crypto.id}>
+              <CryptoTitleWrapper>
+                <CryptoName>{crypto.name}</CryptoName>
+                <CryptoSymbol>{crypto.symbol}</CryptoSymbol>
+              </CryptoTitleWrapper>
+              <CryptoRank>Rank: {crypto.rank}</CryptoRank>
+              <CryptoPrice>
+                Price: ${parseFloat(crypto.priceUsd).toFixed(2)}
+              </CryptoPrice>
+              <AddButtonWrapper>
+                <AddCryptoButtonComponent />
+              </AddButtonWrapper>
+            </CryptoItem>
+          </Link>
         ))}
       </CryptoItemWrapper>
       <ButtonsWrapper>

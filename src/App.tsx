@@ -2,13 +2,15 @@ import React from "react";
 
 import { HeaderComponent } from "./components/header";
 import { Router } from "./routes/routes";
+import GlobalStyles from "./styles/global";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <HeaderComponent />
       <Router />
-    </div>
+      <GlobalStyles />
+    </>
   );
 }
 
