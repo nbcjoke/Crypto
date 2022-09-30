@@ -4,15 +4,18 @@ import { useParams } from "react-router-dom";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import { AddCryptoButtonComponent } from "../../components/buttons/AddCryptoButton";
+import { LineChart } from "../../components/LineChart";
+import { AddItemModal } from "../../components/modal/AddItemModal";
 
 import styled from "styled-components";
+import { useModal } from "../../hooks/useModal";
 
 const Container = styled.div`
   padding: 100px;
 `;
 
 const CryptosTitles = styled.h1`
-  margin: 0;
+  margin-top: 80px;
   text-align: center;
   font-size: 30px;
   font-weight: 600;
@@ -33,7 +36,7 @@ const CryptoDetailsWrapper = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  background: #efefef;
+  background: #e2e2e2;
 `;
 
 const CryptoDetailsName = styled.h1`
@@ -89,6 +92,8 @@ export const CryptoDetails: React.FC = () => {
     (state) => state.cryptoDetails
   );
 
+  const { isShowing, toggle } = useModal();
+
   const { fetchCryptoDetails } = useActions();
 
   useEffect(() => {
@@ -112,7 +117,9 @@ export const CryptoDetails: React.FC = () => {
             {cryptoDetails.name}({cryptoDetails.symbol})
           </CryptoDetailsName>
           <CryptoDetailsContent>
-            <CryptoDetailsGraphics></CryptoDetailsGraphics>
+            <CryptoDetailsGraphics>
+              <LineChart cryptoDetails={cryptoDetails} />
+            </CryptoDetailsGraphics>
             <CryptoDetailsInfo>
               <CryptoDetailsTitle>
                 Rank:{" "}
@@ -168,10 +175,17 @@ export const CryptoDetails: React.FC = () => {
             </CryptoDetailsInfo>
           </CryptoDetailsContent>
           <AddButtonWrapper>
-            <AddCryptoButtonComponent />
+            <AddCryptoButtonComponent handleClick={toggle} />
           </AddButtonWrapper>
         </CryptoDetailsWrapper>
       </CryptosWrapper>
+      {isShowing && (
+        <AddItemModal
+          crypto={cryptoDetails}
+          isShowing={isShowing}
+          hide={toggle}
+        />
+      )}
     </Container>
   );
 };

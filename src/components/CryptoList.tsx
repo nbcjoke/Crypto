@@ -5,6 +5,8 @@ import { useActions } from "../hooks/useActions";
 import { AddCryptoButtonComponent } from "./buttons/AddCryptoButton";
 import { Button } from "./buttons/Button";
 import { Link } from "react-router-dom";
+import { useModal } from "../hooks/useModal";
+import { AddItemModal } from "./modal/AddItemModal";
 
 import styled from "styled-components";
 
@@ -20,12 +22,17 @@ const CryptoItem = styled.div`
   padding: 20px;
   width: 350px;
   height: 300px;
-  background: #efefef;
+  background: #e2e2e2;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 3px 20px 3px rgb(0 0 0 / 15%);
+  }
 `;
 
 const CryptoTitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 12px 0;
 `;
 
 const CryptoName = styled.h1`
@@ -66,6 +73,9 @@ const ButtonsWrapper = styled.div`
 export const CryptoList: React.FC = () => {
   const [limit, setLimit] = useState(20);
   const [offset, setOffset] = useState(0);
+  const [selectedCrypto, setSelectedCrypto] = useState(undefined);
+
+  const { isShowing, toggle } = useModal();
 
   const { cryptos, isLoading, errors } = useTypedSelector(
     (state) => state.cryptos
@@ -80,6 +90,11 @@ export const CryptoList: React.FC = () => {
   const handleReset = () => {
     setOffset(0);
     window.scrollTo(0, 0);
+  };
+
+  const openPreview = (crypto: any) => {
+    setSelectedCrypto(crypto);
+    toggle();
   };
 
   if (errors) {
@@ -101,7 +116,9 @@ export const CryptoList: React.FC = () => {
                 Price: ${parseFloat(crypto.priceUsd).toFixed(2)}
               </CryptoPrice>
               <AddButtonWrapper>
-                <AddCryptoButtonComponent />
+                <AddCryptoButtonComponent
+                  handleClick={() => openPreview(crypto)}
+                />
               </AddButtonWrapper>
             </CryptoItem>
           </Link>
@@ -111,6 +128,13 @@ export const CryptoList: React.FC = () => {
         <Button onClick={() => setOffset(offset + 20)}>Show More</Button>
         <Button onClick={handleReset}>Reset</Button>
       </ButtonsWrapper>
+      {isShowing && (
+        <AddItemModal
+          crypto={selectedCrypto}
+          isShowing={isShowing}
+          hide={toggle}
+        />
+      )}
     </>
   );
 };

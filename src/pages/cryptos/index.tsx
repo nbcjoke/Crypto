@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const CryptosTitles = styled.h1`
-  margin: 0;
+  margin-top: 80px;
   text-align: center;
   font-size: 30px;
   font-weight: 600;

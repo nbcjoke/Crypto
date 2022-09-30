@@ -6,6 +6,10 @@ import {
   CryptoDetailsAction,
   CryptoDetailsActionTypes,
 } from "../../types/cryptoDetails";
+import {
+  CryptosRankAction,
+  CryptosRankActionTypes,
+} from "../../types/cryptoRank";
 
 export const fetchCryptos = (limit: number, offset: number) => {
   return async (dispatch: Dispatch<CryptosAction>) => {
@@ -41,6 +45,27 @@ export const fetchCryptoDetails = (cryptoId: string) => {
       console.log(e);
       dispatch({
         type: CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_FAIL,
+        payload: "Error",
+      });
+    }
+  };
+};
+
+export const fetchCryptosRank = (limit: number) => {
+  return async (dispatch: Dispatch<CryptosRankAction>) => {
+    try {
+      dispatch({ type: CryptosRankActionTypes.GET_CRYPTOS_RANK_REQUEST });
+      const response = await axios.get(
+        `https://api.coincap.io/v2/assets?limit=${limit}`
+      );
+      console.log(response.data.data);
+      dispatch({
+        type: CryptosRankActionTypes.GET_CRYPTOS_RANK_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (e) {
+      dispatch({
+        type: CryptosRankActionTypes.GET_CRYPTOS_RANK_FAIL,
         payload: "Error",
       });
     }
