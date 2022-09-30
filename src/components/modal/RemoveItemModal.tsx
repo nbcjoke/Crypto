@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { BuyCryptoButtonComponent } from "../buttons/BuyCryptoButton";
+import { SellCryptoButtonComponent } from "../buttons/SellCryptoButton";
 
 import styled from "styled-components";
 
@@ -33,6 +33,11 @@ const Modal = styled.div`
   border-radius: 3px;
   max-width: 500px;
   padding: 2rem;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    max-width: 289px;
+    padding: 1rem;
+  }
 `;
 
 const ModalHeader = styled.div`
@@ -70,6 +75,11 @@ const ModalFormContainer = styled.div`
   align-items: center;
   gap: 25px;
   flex-direction: column;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    margin-top: 25px;
+    gap: 20px;
+  }
 `;
 
 const ModalInput = styled.input`
@@ -104,9 +114,7 @@ export const RemoveItemModal: React.FC<Props> = ({
           <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
             <Modal>
               <ModalHeader>
-                <ModalTitle>
-                  hello{/* {crypto.name}({crypto.symbol}) */}
-                </ModalTitle>
+                <ModalTitle>Bag</ModalTitle>
                 <ModalCloseButton
                   data-dismiss="modal"
                   aria-label="Close"
@@ -117,7 +125,7 @@ export const RemoveItemModal: React.FC<Props> = ({
               </ModalHeader>
               <ModalTitle>{/* {crypto.name}({crypto.symbol}) */}</ModalTitle>
               {/* <ModalPrice>${parseFloat(crypto.priceUsd).toFixed(2)}</ModalPrice> */}
-              <button></button>
+              <SellCryptoButtonComponent />
             </Modal>
           </ModalWrapper>
         </>

@@ -15,6 +15,14 @@ const CryptoItemWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    gap: 25px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    gap: 15px;
+  }
 `;
 
 const CryptoItem = styled.div`
@@ -26,6 +34,17 @@ const CryptoItem = styled.div`
   transition: 0.3s;
   &:hover {
     box-shadow: 0 3px 20px 3px rgb(0 0 0 / 15%);
+  }
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    width: 300px;
+    height: 250px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    width: 300px;
+    height: 250px;
+    padding: 10px;
   }
 `;
 
@@ -61,6 +80,10 @@ const AddButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 100px;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    margin-top: 60px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
@@ -68,6 +91,15 @@ const ButtonsWrapper = styled.div`
   margin-top: 50px;
   justify-content: center;
   gap: 30px;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    margin-top: 25px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 export const CryptoList: React.FC = () => {

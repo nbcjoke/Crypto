@@ -7,6 +7,14 @@ import styled from "styled-components";
 
 const Container = styled.div`
   padding: 100px;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    padding: 100px 25px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    padding: 100px 15px;
+  }
 `;
 
 const CryptosTitles = styled.h1`

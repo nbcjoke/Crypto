@@ -11,6 +11,10 @@ type ButtonProps = {
 const ViewProfileButton = styled.button`
   width: 48px;
   height: 48px;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    padding: 0;
+  }
 `;
 
 const Image = styled.img``;

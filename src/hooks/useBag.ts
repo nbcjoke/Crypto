@@ -2,8 +2,8 @@ import { useCallback } from "react";
 
 export const useBag = () => {
   const bagState: {}[] = [];
-  const addItemToCart = useCallback((crypto: any) => {
-    bagState.push(...crypto);
+  const addItemToCart = useCallback((crypto: [], amount: number) => {
+    bagState.push(...crypto, amount);
   }, []);
   //   const removeItemFromCart = useCallback((cryptoId: string) => {
   //     const cryptoIndexToRemove = bagState.findIndex(

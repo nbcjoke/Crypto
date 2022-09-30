@@ -16,6 +16,15 @@ const Header = styled.header`
   height: 90px;
   background: #e2e2e2;
   box-shadow: 0px 0px 9px 5px rgb(184 181 181);
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    padding: 20px 35px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    padding: 20px 15px;
+    height: 110px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -26,10 +35,20 @@ const HeaderContainer = styled.div`
 const CryptoRankContainer = styled.div`
   display: flex;
   gap: 20px;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const CryptoRankButton = styled.div`
   margin-left: auto;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const CryptoRankWrapper = styled.div`

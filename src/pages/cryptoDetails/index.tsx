@@ -12,6 +12,14 @@ import { useModal } from "../../hooks/useModal";
 
 const Container = styled.div`
   padding: 100px;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    padding: 100px 30px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    padding: 100px 15px;
+  }
 `;
 
 const CryptosTitles = styled.h1`
@@ -29,6 +37,14 @@ const CryptosWrapper = styled.div`
   align-items: center;
   gap: 30px;
   flex-direction: column;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    padding: 0 15px;
+  }
 `;
 
 const CryptoDetailsWrapper = styled.div`
@@ -37,6 +53,14 @@ const CryptoDetailsWrapper = styled.div`
   height: 100%;
   border-radius: 5px;
   background: #e2e2e2;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    padding: 50px 30px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    padding: 25px 15px;
+  }
 `;
 
 const CryptoDetailsName = styled.h1`
@@ -50,10 +74,17 @@ const CryptoDetailsContent = styled.div`
   justify-content: center;
   margin-top: 50px;
   gap: 15px;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    margin-top: 30px;
+    align-items: center;
+  }
 `;
 
 const CryptoDetailsGraphics = styled.div`
-  width: 600px;
+  width: 100%;
 `;
 
 const CryptoDetailsInfo = styled.div`
@@ -65,6 +96,10 @@ const CryptoDetailsTitle = styled.p`
   font-size: 20px;
   font-weight: 500;
   margin: 10px auto 15px 0;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    margin: 5px auto 5px 0;
+  }
 `;
 
 const CryptoDetailsTitleInfo = styled.span`

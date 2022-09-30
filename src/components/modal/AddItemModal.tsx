@@ -34,6 +34,11 @@ const Modal = styled.div`
   border-radius: 3px;
   max-width: 500px;
   padding: 2rem;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    max-width: 289px;
+    padding: 1rem;
+  }
 `;
 
 const ModalHeader = styled.div`
@@ -71,6 +76,11 @@ const ModalFormContainer = styled.div`
   align-items: center;
   gap: 25px;
   flex-direction: column;
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    margin-top: 25px;
+    gap: 20px;
+  }
 `;
 
 const ModalInput = styled.input`
@@ -139,9 +149,9 @@ export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
                   onChange={changeHandler}
                 />
                 <BuyCryptoButtonComponent
-                  handleClick={() => addItemToCart(crypto)}
+                  handleClick={() => addItemToCart(crypto, amount)}
                 />
-                <p>{result()}</p>
+                <div>{result()}</div>
               </ModalFormContainer>
             </Modal>
           </ModalWrapper>
