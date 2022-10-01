@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { SellCryptoButtonComponent } from "../buttons/SellCryptoButton";
 
 import styled from "styled-components";
+import { useBag } from "../../hooks/useBag";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -82,11 +83,29 @@ const ModalFormContainer = styled.div`
   }
 `;
 
-const ModalInput = styled.input`
-  width: 250px;
-  border-radius: 5px;
-  font-size: 16px;
-  padding: 8px 10px;
+const BagContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
+const BagWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+const BagButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 2px;
+  margin-top: 7px;
+  box-sizing: border-box;
+  border: 1px solid black;
 `;
 
 interface Props {
@@ -100,11 +119,18 @@ export const RemoveItemModal: React.FC<Props> = ({
   isShowing,
   hide,
 }) => {
-  //   const [amount, setAmount] = useState(1);
+  const { storedCryptos, getAddedCryptos, removeAddedCrypto } = useBag();
 
-  //   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setAmount(+event.target.value);
-  //   };
+  let cryptos = getAddedCryptos();
+
+  useEffect(() => {
+    getAddedCryptos();
+  }, [storedCryptos]);
+
+  const removeHandler = (id: string) => {
+    removeAddedCrypto(id);
+    cryptos = getAddedCryptos();
+  };
 
   return (
     <>
@@ -123,9 +149,23 @@ export const RemoveItemModal: React.FC<Props> = ({
                   <span aria-hidden="true">&times;</span>
                 </ModalCloseButton>
               </ModalHeader>
-              <ModalTitle>{/* {crypto.name}({crypto.symbol}) */}</ModalTitle>
-              {/* <ModalPrice>${parseFloat(crypto.priceUsd).toFixed(2)}</ModalPrice> */}
-              <SellCryptoButtonComponent />
+              {cryptos.map((crypto) => (
+                <>
+                  <BagContainer key={crypto.id}>
+                    <BagWrapper>
+                      <div>{crypto.name}</div>
+                      <div>amount: {crypto.amount}</div>
+                      <div>total: ${crypto.total.toFixed(2)}</div>
+                    </BagWrapper>
+                    <BagButtonWrapper>
+                      <SellCryptoButtonComponent
+                        handleClick={() => removeHandler(crypto.id)}
+                      />
+                    </BagButtonWrapper>
+                  </BagContainer>
+                  <Divider></Divider>
+                </>
+              ))}
             </Modal>
           </ModalWrapper>
         </>

@@ -80,8 +80,6 @@ export const HeaderComponent: React.FC = () => {
     return <h1>{errors}</h1>;
   }
 
-  console.log(cryptosRank);
-
   return (
     <>
       <Header>

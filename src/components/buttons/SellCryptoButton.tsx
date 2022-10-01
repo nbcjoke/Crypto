@@ -2,13 +2,13 @@ import React from "react";
 
 import styled from "styled-components";
 
-// type ButtonProps = {
-//   handleClick: () => void;
-// };
+type ButtonProps = {
+  handleClick: () => void;
+};
 
 const SellCryptoButton = styled.button`
   width: 160px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   border-radius: 5px;
   border: none;
   color: black;
@@ -18,12 +18,12 @@ const SellCryptoButton = styled.button`
   cursor: pointer;
 `;
 
-export const SellCryptoButtonComponent = () => {
-  //   const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //     props.handleClick();
-  //   };
+export const SellCryptoButtonComponent = (props: ButtonProps) => {
+  const clickHandler = () => {
+    props.handleClick();
+  };
 
-  return <SellCryptoButton>Sell</SellCryptoButton>;
+  return (
+    <SellCryptoButton onClick={() => clickHandler()}>Sell</SellCryptoButton>
+  );
 };

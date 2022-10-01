@@ -75,6 +75,13 @@ const CryptoDetailsContent = styled.div`
   margin-top: 50px;
   gap: 15px;
 
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    margin-top: 30px;
+    align-items: center;
+  }
+
   @media screen and (min-width: 350px) and (max-width: 639px) {
     flex-wrap: wrap;
     flex-direction: column-reverse;
@@ -84,6 +91,8 @@ const CryptoDetailsContent = styled.div`
 `;
 
 const CryptoDetailsGraphics = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
 `;
 
@@ -112,6 +121,10 @@ const CryptoDetailsTitleLink = styled.a`
   font-size: 22px;
   font-weight: 600;
   color: black;
+  transition: 0.3s;
+  &:hover {
+    color: #7878d2;
+  }
 `;
 
 const AddButtonWrapper = styled.div`
@@ -123,9 +136,11 @@ const AddButtonWrapper = styled.div`
 export const CryptoDetails: React.FC = () => {
   const { cryptoId } = useParams();
 
-  const { cryptoDetails, isLoading, errors } = useTypedSelector(
+  const { cryptoDetails, isLoading, errors, history } = useTypedSelector(
     (state) => state.cryptoDetails
   );
+
+  console.log(history);
 
   const { isShowing, toggle } = useModal();
 
@@ -153,7 +168,7 @@ export const CryptoDetails: React.FC = () => {
           </CryptoDetailsName>
           <CryptoDetailsContent>
             <CryptoDetailsGraphics>
-              <LineChart cryptoDetails={cryptoDetails} />
+              <LineChart history={history} />
             </CryptoDetailsGraphics>
             <CryptoDetailsInfo>
               <CryptoDetailsTitle>

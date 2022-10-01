@@ -1,18 +1,6 @@
 export interface CryptoDetailsState {
-  cryptoDetails:
-    | {
-        name: string;
-        changePercent24Hr: string;
-        explorer: string;
-        priceUsd: string;
-        rank: string;
-        supply: string;
-        symbol: string;
-        volumeUsd24Hr: string;
-        vwap24Hr: string;
-        maxSupply: string;
-      }
-    | undefined;
+  cryptoDetails: Crypto | undefined;
+  history: History[];
   isLoading: boolean;
   errors: null | string;
 }
@@ -30,17 +18,27 @@ interface GetCryptoDetailsRequestAction {
 interface GetCryptoDetailsSuccessAction {
   type: CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_SUCCESS;
   payload: {
-    name: string;
-    changePercent24Hr: string;
-    explorer: string;
-    priceUsd: string;
-    rank: string;
-    supply: string;
-    symbol: string;
-    volumeUsd24Hr: string;
-    vwap24Hr: string;
-    maxSupply: string;
+    crypto: Crypto;
+    history: History[];
   };
+}
+
+interface History {
+  priceUsd: string;
+  time: number;
+}
+export interface Crypto {
+  id: string;
+  name: string;
+  changePercent24Hr: string;
+  explorer: string;
+  priceUsd: string;
+  rank: string;
+  supply: string;
+  symbol: string;
+  volumeUsd24Hr: string;
+  vwap24Hr: string;
+  maxSupply: string;
 }
 
 interface GetCryptoDetailsFailAction {

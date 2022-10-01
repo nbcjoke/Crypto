@@ -18,7 +18,6 @@ export const fetchCryptos = (limit: number, offset: number) => {
       const response = await axios.get(
         `https://api.coincap.io/v2/assets?offset=${offset}&limit=${limit}`
       );
-      console.log(response);
       dispatch({
         type: CryptosActionTypes.GET_CRYPTOS_SUCCESS,
         payload: response.data.data,
@@ -33,16 +32,21 @@ export const fetchCryptoDetails = (cryptoId: string) => {
   return async (dispatch: Dispatch<CryptoDetailsAction>) => {
     try {
       dispatch({ type: CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_REQUEST });
-      const response = await axios.get(
-        `https://api.coincap.io/v2/assets/${cryptoId}`
-      );
-      console.log(response);
+      const [crypto, history] = await axios.all([
+        axios
+          .get(`https://api.coincap.io/v2/assets/${cryptoId}`)
+          .then((response) => response.data.data),
+        axios
+          .get(
+            `https://api.coincap.io/v2/assets/${cryptoId}/history?interval=h12`
+          )
+          .then((response) => response.data.data),
+      ]);
       dispatch({
         type: CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_SUCCESS,
-        payload: response.data.data,
+        payload: { crypto, history },
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_FAIL,
         payload: "Error",
@@ -58,7 +62,6 @@ export const fetchCryptosRank = (limit: number) => {
       const response = await axios.get(
         `https://api.coincap.io/v2/assets?limit=${limit}`
       );
-      console.log(response.data.data);
       dispatch({
         type: CryptosRankActionTypes.GET_CRYPTOS_RANK_SUCCESS,
         payload: response.data.data,

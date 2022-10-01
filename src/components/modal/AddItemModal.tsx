@@ -99,20 +99,19 @@ interface Props {
 export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
   const [amount, setAmount] = useState(1);
 
-  const { addItemToCart, bagState } = useBag();
+  const { addItemToCart } = useBag();
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(+event.target.value);
   };
 
-  console.log(bagState);
-
   const result = () => {
-    if (amount >= 1) {
-      const price = +parseFloat(crypto.priceUsd).toFixed(2);
-      const sum = (amount * price).toFixed(2);
-      return `${amount}*${price} = ${sum}`;
+    if (amount <= 0) {
+      return;
     }
+    const price = +parseFloat(crypto.priceUsd).toFixed(2);
+    const sum = (amount * price).toFixed(2);
+    return `${amount}*${price} = ${sum}`;
   };
 
   useEffect(() => {

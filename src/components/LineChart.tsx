@@ -1,16 +1,64 @@
 import React from "react";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 
 type LineChartProps = {
-  cryptoDetails: {};
+  history: any[];
 };
 
-export const LineChart = (props: LineChartProps) => {
-  // const coinPrice = [];
-  // const coinTimestamp = [];
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  // for (let i = 0; i <)
+export const LineChart = ({ history }: LineChartProps) => {
+  const coinPrice = [];
+  const coinDate = [];
 
-  return <div></div>;
+  for (let i = 0; i < history.length; i++) {
+    coinPrice.push(history[i].priceUsd);
+    coinDate.push(history[i].date.slice(0, 10));
+  }
+
+  const data = {
+    labels: coinDate,
+    datasets: [
+      {
+        label: "Price in USD",
+        data: coinPrice,
+        fill: false,
+        backgroundColor: "#0071bd",
+        borderColor: "#0071bd",
+      },
+    ],
+  };
+
+  const options: any = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
+  return <Line data={data} options={options} />;
 };

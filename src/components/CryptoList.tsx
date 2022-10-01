@@ -84,6 +84,10 @@ const AddButtonWrapper = styled.div`
   @media screen and (min-width: 640px) and (max-width: 1019px) {
     margin-top: 60px;
   }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    margin-top: 60px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`

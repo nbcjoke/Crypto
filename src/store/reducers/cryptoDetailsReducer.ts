@@ -6,6 +6,7 @@ import {
 
 const initialState: CryptoDetailsState = {
   cryptoDetails: undefined,
+  history: [],
   isLoading: false,
   errors: null,
 };
@@ -17,18 +18,22 @@ export const cryptoDetailsReducer = (
   switch (action.type) {
     case CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_REQUEST:
       return {
+        ...state,
         isLoading: true,
         errors: null,
         cryptoDetails: state.cryptoDetails,
       };
     case CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_SUCCESS:
       return {
+        ...state,
         isLoading: false,
         errors: null,
-        cryptoDetails: { ...state.cryptoDetails, ...action.payload },
+        cryptoDetails: action.payload.crypto,
+        history: action.payload.history,
       };
     case CryptoDetailsActionTypes.GET_CRYPTO_DETAILS_FAIL:
       return {
+        ...state,
         isLoading: false,
         errors: action.payload,
         cryptoDetails: undefined,
