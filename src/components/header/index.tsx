@@ -44,11 +44,7 @@ const CryptoRankContainer = styled.div`
 
 const CryptoRankButton = styled.div`
   margin-left: auto;
-
-  @media screen and (min-width: 350px) and (max-width: 639px) {
-    display: flex;
-    align-items: center;
-  }
+  margin-right: 60px;
 `;
 
 const CryptoRankWrapper = styled.div`
@@ -71,7 +67,6 @@ export const HeaderComponent: React.FC = () => {
   );
 
   const { fetchCryptosRank } = useActions();
-  const { fetchCryptos } = useActions();
 
   useEffect(() => {
     fetchCryptosRank(limit);

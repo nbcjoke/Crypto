@@ -6,9 +6,9 @@ import { useActions } from "../../hooks/useActions";
 import { AddCryptoButtonComponent } from "../../components/buttons/AddCryptoButton";
 import { LineChart } from "../../components/LineChart";
 import { AddItemModal } from "../../components/modal/AddItemModal";
+import { useModal } from "../../hooks/useModal";
 
 import styled from "styled-components";
-import { useModal } from "../../hooks/useModal";
 
 const Container = styled.div`
   padding: 100px;
@@ -136,11 +136,9 @@ const AddButtonWrapper = styled.div`
 export const CryptoDetails: React.FC = () => {
   const { cryptoId } = useParams();
 
-  const { cryptoDetails, isLoading, errors, history } = useTypedSelector(
+  const { cryptoDetails, errors, history } = useTypedSelector(
     (state) => state.cryptoDetails
   );
-
-  console.log(history);
 
   const { isShowing, toggle } = useModal();
 

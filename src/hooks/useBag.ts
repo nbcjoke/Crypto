@@ -1,19 +1,10 @@
-import { useCallback } from "react";
 import { Crypto } from "../types/cryptoDetails";
+import { AddedCrypto } from "../types/bag";
 
-interface AddedCrypto {
-  id: string;
-  name: string;
-  total: number;
-  amount: number;
-}
-
-export const useBag = () => {
-  const key = "bag-storage";
-  let storedCryptos: AddedCrypto[] = [];
-
-  const addItemToCart = useCallback((cryptoToAdd: Crypto, amount: number) => {
-    const addedCryptos = JSON.parse(localStorage.getItem(key) || "[]");
+export class BagService {
+  private static key = "bag-storage";
+  public static addItemToCart(cryptoToAdd: Crypto, amount: number) {
+    const addedCryptos = JSON.parse(localStorage.getItem(this.key) || "[]");
 
     const addedCrypto = addedCryptos.find(
       (crypto: AddedCrypto) => crypto.id === cryptoToAdd.id
@@ -30,17 +21,16 @@ export const useBag = () => {
         total: amount * +cryptoToAdd.priceUsd,
       });
     }
-    storedCryptos = addedCryptos;
-    localStorage.setItem(key, JSON.stringify(addedCryptos));
-  }, []);
+    localStorage.setItem(this.key, JSON.stringify(addedCryptos));
+    return addedCryptos;
+  }
 
-  const getAddedCryptos = useCallback((): AddedCrypto[] => {
-    storedCryptos = JSON.parse(localStorage.getItem(key) || "[]");
-    return storedCryptos;
-  }, []);
+  public static getAddedCryptos(): AddedCrypto[] {
+    return JSON.parse(localStorage.getItem(this.key) || "[]");
+  }
 
-  const removeAddedCrypto = useCallback((cryptoId: string) => {
-    const addedCryptos = JSON.parse(localStorage.getItem(key) || "[]");
+  public static removeAddedCrypto(cryptoId: string) {
+    const addedCryptos = JSON.parse(localStorage.getItem(this.key) || "[]");
     const index = addedCryptos.findIndex(
       (crypto: AddedCrypto) => crypto.id === cryptoId
     );
@@ -48,14 +38,8 @@ export const useBag = () => {
       return;
     }
     addedCryptos.splice(index, 1);
+    localStorage.setItem(this.key, JSON.stringify(addedCryptos));
 
-    storedCryptos = addedCryptos;
-    localStorage.setItem(key, JSON.stringify(addedCryptos));
-  }, []);
-  return {
-    storedCryptos,
-    addItemToCart,
-    getAddedCryptos,
-    removeAddedCrypto,
-  };
-};
+    return addedCryptos;
+  }
+}

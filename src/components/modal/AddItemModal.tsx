@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import { useBag } from "../../hooks/useBag";
+import { BagService } from "../../hooks/useBag";
 import { BuyCryptoButtonComponent } from "../buttons/BuyCryptoButton";
+import { useActions } from "../../hooks/useActions";
 
 import styled from "styled-components";
 
@@ -99,10 +100,16 @@ interface Props {
 export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
   const [amount, setAmount] = useState(1);
 
-  const { addItemToCart } = useBag();
-
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(+event.target.value);
+  };
+
+  const { setBag } = useActions();
+
+  const addItem = (crypto: any, amount: number) => {
+    const cryptos = BagService.addItemToCart(crypto, amount);
+    setBag(cryptos);
+    hide();
   };
 
   const result = () => {
@@ -116,7 +123,7 @@ export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
 
   useEffect(() => {
     if (amount < 1) {
-      isShowing = false;
+      hide();
     }
   }, [amount]);
 
@@ -148,7 +155,7 @@ export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
                   onChange={changeHandler}
                 />
                 <BuyCryptoButtonComponent
-                  handleClick={() => addItemToCart(crypto, amount)}
+                  handleClick={() => addItem(crypto, amount)}
                 />
                 <div>{result()}</div>
               </ModalFormContainer>

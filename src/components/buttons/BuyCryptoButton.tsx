@@ -16,6 +16,10 @@ const BuyCryptoButton = styled.button`
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background: #81d469;
+  }
 `;
 
 export const BuyCryptoButtonComponent = (props: ButtonProps) => {

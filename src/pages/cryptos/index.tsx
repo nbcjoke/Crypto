@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { Button } from "../../components/buttons/Button";
 import { CryptoList } from "../../components/CryptoList";
 
 import styled from "styled-components";

@@ -113,9 +113,7 @@ export const CryptoList: React.FC = () => {
 
   const { isShowing, toggle } = useModal();
 
-  const { cryptos, isLoading, errors } = useTypedSelector(
-    (state) => state.cryptos
-  );
+  const { cryptos, errors } = useTypedSelector((state) => state.cryptos);
 
   const { fetchCryptos } = useActions();
 

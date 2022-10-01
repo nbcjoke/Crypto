@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
 import { SellCryptoButtonComponent } from "../buttons/SellCryptoButton";
+import { BagService } from "../../hooks/useBag";
 
 import styled from "styled-components";
-import { useBag } from "../../hooks/useBag";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -105,7 +107,7 @@ const Divider = styled.div`
   height: 2px;
   margin-top: 7px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid #989595;
 `;
 
 interface Props {
@@ -119,13 +121,13 @@ export const RemoveItemModal: React.FC<Props> = ({
   isShowing,
   hide,
 }) => {
-  const { storedCryptos, getAddedCryptos, removeAddedCrypto } = useBag();
+  const { addedCryptos } = useTypedSelector((state) => state.bag);
 
-  const cryptos = getAddedCryptos();
+  const { setBag } = useActions();
 
   const removeHandler = (id: string) => {
-    removeAddedCrypto(id);
-    getAddedCryptos();
+    const cryptos = BagService.removeAddedCrypto(id);
+    setBag(cryptos);
   };
 
   return (
@@ -145,7 +147,7 @@ export const RemoveItemModal: React.FC<Props> = ({
                   <span aria-hidden="true">&times;</span>
                 </ModalCloseButton>
               </ModalHeader>
-              {cryptos.map((crypto) => (
+              {addedCryptos.map((crypto) => (
                 <>
                   <BagContainer key={crypto.id}>
                     <BagWrapper>
