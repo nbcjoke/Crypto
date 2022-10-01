@@ -120,7 +120,7 @@ export const CryptoList: React.FC = () => {
   const { fetchCryptos } = useActions();
 
   useEffect(() => {
-    fetchCryptos(limit, offset);
+    fetchCryptos(limit, offset, offset == 0);
   }, [offset]);
 
   const handleReset = () => {

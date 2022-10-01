@@ -32,7 +32,7 @@ export const LineChart = ({ history }: LineChartProps) => {
 
   for (let i = 0; i < history.length; i++) {
     coinPrice.push(history[i].priceUsd);
-    coinDate.push(history[i].date.slice(0, 10));
+    coinDate.push(new Date(history[i].time).toLocaleDateString());
   }
 
   const data = {

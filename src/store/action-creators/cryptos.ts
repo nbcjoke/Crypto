@@ -11,10 +11,17 @@ import {
   CryptosRankActionTypes,
 } from "../../types/cryptoRank";
 
-export const fetchCryptos = (limit: number, offset: number) => {
+export const fetchCryptos = (
+  limit: number,
+  offset: number,
+  clearState: boolean = false
+) => {
   return async (dispatch: Dispatch<CryptosAction>) => {
     try {
-      dispatch({ type: CryptosActionTypes.GET_CRYPTOS_REQUEST });
+      dispatch({
+        type: CryptosActionTypes.GET_CRYPTOS_REQUEST,
+        payload: clearState,
+      });
       const response = await axios.get(
         `https://api.coincap.io/v2/assets?offset=${offset}&limit=${limit}`
       );
@@ -38,7 +45,7 @@ export const fetchCryptoDetails = (cryptoId: string) => {
           .then((response) => response.data.data),
         axios
           .get(
-            `https://api.coincap.io/v2/assets/${cryptoId}/history?interval=h12`
+            `https://api.coincap.io/v2/assets/${cryptoId}/history?interval=h1`
           )
           .then((response) => response.data.data),
       ]);

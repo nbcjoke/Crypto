@@ -121,15 +121,11 @@ export const RemoveItemModal: React.FC<Props> = ({
 }) => {
   const { storedCryptos, getAddedCryptos, removeAddedCrypto } = useBag();
 
-  let cryptos = getAddedCryptos();
-
-  useEffect(() => {
-    getAddedCryptos();
-  }, [storedCryptos]);
+  const cryptos = getAddedCryptos();
 
   const removeHandler = (id: string) => {
     removeAddedCrypto(id);
-    cryptos = getAddedCryptos();
+    getAddedCryptos();
   };
 
   return (

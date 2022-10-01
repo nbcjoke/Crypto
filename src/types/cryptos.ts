@@ -12,6 +12,7 @@ export enum CryptosActionTypes {
 
 interface GetCryptosRequestAction {
   type: CryptosActionTypes.GET_CRYPTOS_REQUEST;
+  payload?: boolean;
 }
 
 interface GetCryptosSuccessAction {

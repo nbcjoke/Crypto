@@ -16,6 +16,11 @@ const SellCryptoButton = styled.button`
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: #da3c42;
+  }
 `;
 
 export const SellCryptoButtonComponent = (props: ButtonProps) => {

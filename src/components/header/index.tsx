@@ -71,6 +71,7 @@ export const HeaderComponent: React.FC = () => {
   );
 
   const { fetchCryptosRank } = useActions();
+  const { fetchCryptos } = useActions();
 
   useEffect(() => {
     fetchCryptosRank(limit);
