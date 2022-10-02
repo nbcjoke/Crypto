@@ -1,3 +1,6 @@
+import { Crypto } from "../crypto";
+import { History } from "../history";
+
 export interface CryptoDetailsState {
   cryptoDetails: Crypto | undefined;
   history: History[];
@@ -21,24 +24,6 @@ interface GetCryptoDetailsSuccessAction {
     crypto: Crypto;
     history: History[];
   };
-}
-
-interface History {
-  priceUsd: string;
-  time: number;
-}
-export interface Crypto {
-  id: string;
-  name: string;
-  changePercent24Hr: string;
-  explorer: string;
-  priceUsd: string;
-  rank: string;
-  supply: string;
-  symbol: string;
-  volumeUsd24Hr: string;
-  vwap24Hr: string;
-  maxSupply: string;
 }
 
 interface GetCryptoDetailsFailAction {

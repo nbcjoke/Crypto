@@ -1,7 +1,7 @@
-import axios from "axios";
 import { Dispatch } from "redux";
 
-import { AddedCrypto, BagActions, BagActionTypes } from "../../types/bag";
+import { BagActions, BagActionTypes } from "../../types/actionTypes/bag";
+import { AddedCrypto } from "../../types/addedCrypto";
 
 export const setBag = (cryptos: AddedCrypto[]) => {
   return async (dispatch: Dispatch<BagActions>) => {

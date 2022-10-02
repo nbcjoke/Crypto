@@ -1,15 +1,18 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 
-import { CryptosAction, CryptosActionTypes } from "../../types/cryptos";
+import {
+  CryptosAction,
+  CryptosActionTypes,
+} from "../../types/actionTypes/cryptos";
 import {
   CryptoDetailsAction,
   CryptoDetailsActionTypes,
-} from "../../types/cryptoDetails";
+} from "../../types/actionTypes/cryptoDetails";
 import {
   CryptosRankAction,
   CryptosRankActionTypes,
-} from "../../types/cryptoRank";
+} from "../../types/actionTypes/cryptoRank";
 
 export const fetchCryptos = (
   limit: number,

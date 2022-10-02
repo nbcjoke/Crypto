@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { Crypto } from "../../types/cryptoDetails";
+import { Crypto } from "../../types/crypto";
 
+import { ButtonProps } from "../../types/buttonTypes/button";
 import styled from "styled-components";
-
-type ButtonProps = {
-  handleClick: () => void;
-};
 
 const ViewProfileButton = styled.button`
   width: 40px;

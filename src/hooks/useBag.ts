@@ -1,5 +1,5 @@
-import { Crypto } from "../types/cryptoDetails";
-import { AddedCrypto } from "../types/bag";
+import { Crypto } from "../types/crypto";
+import { AddedCrypto } from "../types/addedCrypto";
 
 export class BagService {
   private static key = "bag-storage";

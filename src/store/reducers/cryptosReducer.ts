@@ -2,7 +2,7 @@ import {
   CryptosAction,
   CryptosActionTypes,
   CryptosState,
-} from "../../types/cryptos";
+} from "../../types/actionTypes/cryptos";
 
 const initialState: CryptosState = {
   cryptos: [],

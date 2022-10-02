@@ -4,7 +4,9 @@ import { BagService } from "../../hooks/useBag";
 import { BuyCryptoButtonComponent } from "../buttons/BuyCryptoButton";
 import { useActions } from "../../hooks/useActions";
 
+import { AddItemModalProps } from "../../types/modalTypes/addItemModal";
 import styled from "styled-components";
+import { Crypto } from "../../types/crypto";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -91,13 +93,11 @@ const ModalInput = styled.input`
   padding: 8px 10px;
 `;
 
-interface Props {
-  crypto: any;
-  isShowing: boolean;
-  hide: any;
-}
-
-export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
+export const AddItemModal: React.FC<AddItemModalProps> = ({
+  crypto,
+  isShowing,
+  hide,
+}) => {
   const [amount, setAmount] = useState(1);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +106,7 @@ export const AddItemModal: React.FC<Props> = ({ crypto, isShowing, hide }) => {
 
   const { setBag } = useActions();
 
-  const addItem = (crypto: any, amount: number) => {
+  const addItem = (crypto: Crypto, amount: number) => {
     const cryptos = BagService.addItemToCart(crypto, amount);
     setBag(cryptos);
     hide();

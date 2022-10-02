@@ -2,7 +2,7 @@ import {
   CryptosRankAction,
   CryptosRankActionTypes,
   CryptosRankState,
-} from "../../types/cryptoRank";
+} from "../../types/actionTypes/cryptoRank";
 
 const initialState: CryptosRankState = {
   cryptosRank: [],

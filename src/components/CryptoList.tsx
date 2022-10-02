@@ -9,6 +9,7 @@ import { useModal } from "../hooks/useModal";
 import { AddItemModal } from "./modal/AddItemModal";
 
 import styled from "styled-components";
+import { Crypto } from "../types/crypto";
 
 const CryptoItemWrapper = styled.div`
   display: flex;
@@ -109,7 +110,7 @@ const ButtonsWrapper = styled.div`
 export const CryptoList: React.FC = () => {
   const [limit, setLimit] = useState(20);
   const [offset, setOffset] = useState(0);
-  const [selectedCrypto, setSelectedCrypto] = useState(undefined);
+  const [selectedCrypto, setSelectedCrypto] = useState<Crypto>();
 
   const { isShowing, toggle } = useModal();
 
@@ -126,7 +127,7 @@ export const CryptoList: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
-  const openPreview = (crypto: any) => {
+  const openPreview = (crypto: Crypto) => {
     setSelectedCrypto(crypto);
     toggle();
   };
@@ -162,7 +163,7 @@ export const CryptoList: React.FC = () => {
         <Button onClick={() => setOffset(offset + 20)}>Show More</Button>
         <Button onClick={handleReset}>Reset</Button>
       </ButtonsWrapper>
-      {isShowing && (
+      {isShowing && selectedCrypto && (
         <AddItemModal
           crypto={selectedCrypto}
           isShowing={isShowing}

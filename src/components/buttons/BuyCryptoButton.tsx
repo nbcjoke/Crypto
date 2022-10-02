@@ -1,10 +1,7 @@
 import React from "react";
 
+import { ButtonProps } from "../../types/buttonTypes/button";
 import styled from "styled-components";
-
-type ButtonProps = {
-  handleClick: () => void;
-};
 
 const BuyCryptoButton = styled.button`
   width: 160px;

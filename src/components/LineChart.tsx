@@ -1,5 +1,7 @@
 import React from "react";
 
+import { LineChartProps } from "../types/chartTypes/lineChart";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,10 +13,6 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-
-type LineChartProps = {
-  history: any[];
-};
 
 ChartJS.register(
   CategoryScale,

@@ -1,5 +1,7 @@
+import { Crypto } from "../crypto";
+
 export interface CryptosState {
-  cryptos: any[];
+  cryptos: Crypto[];
   isLoading: boolean;
   errors: null | string;
 }
@@ -17,7 +19,7 @@ interface GetCryptosRequestAction {
 
 interface GetCryptosSuccessAction {
   type: CryptosActionTypes.GET_CRYPTOS_SUCCESS;
-  payload: any[];
+  payload: Crypto[];
 }
 
 interface GetCryptosFailAction {

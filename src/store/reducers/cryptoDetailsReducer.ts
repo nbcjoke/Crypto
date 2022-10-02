@@ -2,7 +2,7 @@ import {
   CryptoDetailsAction,
   CryptoDetailsState,
   CryptoDetailsActionTypes,
-} from "../../types/cryptoDetails";
+} from "../../types/actionTypes/cryptoDetails";
 
 const initialState: CryptoDetailsState = {
   cryptoDetails: undefined,

@@ -5,6 +5,7 @@ import { useActions } from "../../hooks/useActions";
 import { SellCryptoButtonComponent } from "../buttons/SellCryptoButton";
 import { BagService } from "../../hooks/useBag";
 
+import { RemoveItemModalProps } from "../../types/modalTypes/removeItemModal";
 import styled from "styled-components";
 
 const ModalOverlay = styled.div`
@@ -64,27 +65,6 @@ const ModalTitle = styled.h2`
   font-weight: 500;
 `;
 
-const ModalPrice = styled.h2`
-  margin-top: 35px;
-  text-align: center;
-  font-size: 28px;
-  font-weight: 500;
-`;
-
-const ModalFormContainer = styled.div`
-  display: flex;
-  margin-top: 50px;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  flex-direction: column;
-
-  @media screen and (min-width: 350px) and (max-width: 639px) {
-    margin-top: 25px;
-    gap: 20px;
-  }
-`;
-
 const BagContainer = styled.div`
   display: flex;
   margin-top: 20px;
@@ -110,14 +90,7 @@ const Divider = styled.div`
   border: 1px solid #989595;
 `;
 
-interface Props {
-  //   crypto: any;
-  isShowing: boolean;
-  hide: any;
-}
-
-export const RemoveItemModal: React.FC<Props> = ({
-  //   crypto,
+export const RemoveItemModal: React.FC<RemoveItemModalProps> = ({
   isShowing,
   hide,
 }) => {

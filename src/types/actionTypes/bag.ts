@@ -1,11 +1,4 @@
-import { Crypto } from "./cryptoDetails";
-
-export interface AddedCrypto {
-  id: string;
-  name: string;
-  total: number;
-  amount: number;
-}
+import { AddedCrypto } from "../addedCrypto";
 
 export interface BagState {
   addedCryptos: AddedCrypto[];

@@ -1,5 +1,7 @@
+import { Crypto } from "../crypto";
+
 export interface CryptosRankState {
-  cryptosRank: any[];
+  cryptosRank: Crypto[];
   isLoading: boolean;
   errors: null | string;
 }
@@ -16,7 +18,7 @@ interface GetCryptosRankRequestAction {
 
 interface GetCryptosRankSuccessAction {
   type: CryptosRankActionTypes.GET_CRYPTOS_RANK_SUCCESS;
-  payload: any[];
+  payload: Crypto[];
 }
 
 interface GetCryptosRankFailAction {

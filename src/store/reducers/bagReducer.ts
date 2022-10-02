@@ -1,5 +1,9 @@
 import { BagService } from "../../hooks/useBag";
-import { BagActions, BagActionTypes, BagState } from "../../types/bag";
+import {
+  BagActions,
+  BagActionTypes,
+  BagState,
+} from "../../types/actionTypes/bag";
 
 const initialState: BagState = {
   addedCryptos: BagService.getAddedCryptos(),
