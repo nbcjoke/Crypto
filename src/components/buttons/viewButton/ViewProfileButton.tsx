@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { Crypto } from "../../types/crypto";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
+import { Crypto } from "../../../types/crypto";
 
-import { ButtonProps } from "../../types/buttonTypes/button";
-import styled from "styled-components";
+import * as styles from "./style";
 
-const ViewProfileButton = styled.button`
-  width: 40px;
-  height: 28px;
-
-  @media screen and (min-width: 350px) and (max-width: 639px) {
-    padding: 0;
-  }
-`;
+type ButtonProps = {
+  handleClick: () => void;
+};
 
 export const ViewProfileButtonComponent = (props: ButtonProps) => {
   const [total, setTotal] = useState("0");
@@ -56,7 +50,7 @@ export const ViewProfileButtonComponent = (props: ButtonProps) => {
   };
 
   return (
-    <ViewProfileButton onClick={() => clickHandler()}>
+    <styles.ViewProfileButton onClick={() => clickHandler()}>
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title />
         <g data-name="briefcase simple" id="briefcase_simple">
@@ -66,6 +60,6 @@ export const ViewProfileButtonComponent = (props: ButtonProps) => {
       <div>
         {total ? `$${total} ${differenceUsd}(${differencePercent}%)` : ""}
       </div>
-    </ViewProfileButton>
+    </styles.ViewProfileButton>
   );
 };

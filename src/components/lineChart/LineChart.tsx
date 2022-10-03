@@ -1,7 +1,5 @@
 import React from "react";
 
-import { LineChartProps } from "../types/chartTypes/lineChart";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { History } from "../../types/history";
 
 ChartJS.register(
   CategoryScale,
@@ -23,6 +22,10 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+type LineChartProps = {
+  history: History[];
+};
 
 export const LineChart = ({ history }: LineChartProps) => {
   const coinPrice = [];
