@@ -30,19 +30,29 @@ export const CryptoRankContainer = styled.div`
 
   @media screen and (min-width: 350px) and (max-width: 639px) {
     flex-direction: column;
-    gap: 10px;
+    gap: 0;
+    margin-top: -20px;
   }
 `;
 
 export const CryptoRankButton = styled.div`
   margin-left: auto;
   margin-right: 60px;
+
+  @media screen and (min-width: 640px) and (max-width: 1019px) {
+    margin-right: 120px;
+  }
+
+  @media screen and (min-width: 350px) and (max-width: 639px) {
+    margin-left: 30px;
+  }
 `;
 
 export const CryptoRankWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const CryptoRankName = styled.div`

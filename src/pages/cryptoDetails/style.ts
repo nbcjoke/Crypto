@@ -53,9 +53,22 @@ export const CryptoDetailsWrapper = styled.div`
   }
 `;
 
-export const CryptoDetailsName = styled.h1`
-  text-align: center;
+export const CryptoDetailsInfoTitle = styled.div`
+  display: flex;
+`;
+
+export const CryptoDetailsBack = styled.p`
   margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  transition: 0.3s;
+  &:hover {
+    color: #7878d2;
+  }
+`;
+
+export const CryptoDetailsName = styled.h1`
+  margin: 0 auto;
   font-size: 22px;
 `;
 

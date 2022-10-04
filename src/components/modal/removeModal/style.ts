@@ -69,9 +69,7 @@ export const BagWrapper = styled.div`
 `;
 
 export const BagButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+  margin-top: 10px;
 `;
 
 export const Divider = styled.div`

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
-import { AddCryptoButtonComponent } from "../../components/buttons/addButton/AddCryptoButton";
 import { LineChart } from "../../components/lineChart/LineChart";
 import { AddItemModal } from "../../components/modal/addModal/AddItemModal";
 import { useModal } from "../../hooks/useModal";
+import { ButtonComponent } from "../../components/button/Button";
 
 import * as styles from "./style";
 
@@ -38,9 +38,16 @@ export const CryptoDetails: React.FC = () => {
       <styles.CryptosTitles>Crypto Details Page</styles.CryptosTitles>
       <styles.CryptosWrapper>
         <styles.CryptoDetailsWrapper>
-          <styles.CryptoDetailsName>
-            {cryptoDetails.name}({cryptoDetails.symbol})
-          </styles.CryptoDetailsName>
+          <styles.CryptoDetailsInfoTitle>
+            <Link to={"/"}>
+              <styles.CryptoDetailsBack>
+                Back to main page
+              </styles.CryptoDetailsBack>
+            </Link>
+            <styles.CryptoDetailsName>
+              {cryptoDetails.name}({cryptoDetails.symbol})
+            </styles.CryptoDetailsName>
+          </styles.CryptoDetailsInfoTitle>
           <styles.CryptoDetailsContent>
             <styles.CryptoDetailsGraphics>
               <LineChart history={history} />
@@ -76,7 +83,7 @@ export const CryptoDetails: React.FC = () => {
                   href={cryptoDetails.explorer}
                   target="_blank"
                 >
-                  Link
+                  {cryptoDetails.explorer}
                 </styles.CryptoDetailsTitleLink>
               </styles.CryptoDetailsTitle>
               <styles.CryptoDetailsTitle>
@@ -87,9 +94,13 @@ export const CryptoDetails: React.FC = () => {
               </styles.CryptoDetailsTitle>
               <styles.CryptoDetailsTitle>
                 Max Supply:{" "}
-                <styles.CryptoDetailsTitleInfo>
-                  {parseFloat(cryptoDetails.maxSupply).toFixed(2)}
-                </styles.CryptoDetailsTitleInfo>
+                {cryptoDetails.maxSupply ? (
+                  <styles.CryptoDetailsTitleInfo>
+                    {parseFloat(cryptoDetails.maxSupply).toFixed(2)}
+                  </styles.CryptoDetailsTitleInfo>
+                ) : (
+                  "-"
+                )}
               </styles.CryptoDetailsTitle>
               <styles.CryptoDetailsTitle>
                 Volume 24Hr:{" "}
@@ -100,7 +111,11 @@ export const CryptoDetails: React.FC = () => {
             </styles.CryptoDetailsInfo>
           </styles.CryptoDetailsContent>
           <styles.AddButtonWrapper>
-            <AddCryptoButtonComponent handleClick={toggle} />
+            <ButtonComponent
+              onClick={() => toggle()}
+              children="Add crypto"
+              color="#5baf6a"
+            />
           </styles.AddButtonWrapper>
         </styles.CryptoDetailsWrapper>
       </styles.CryptosWrapper>

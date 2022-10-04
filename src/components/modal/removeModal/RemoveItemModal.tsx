@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { useActions } from "../../../hooks/useActions";
-import { SellCryptoButtonComponent } from "../../buttons/sellButton/SellCryptoButton";
 import { BagService } from "../../../hooks/useBag";
 
 import * as styles from "./style";
+import { ButtonComponent } from "../../button/Button";
 
 interface RemoveItemModalProps {
   isShowing: boolean;
@@ -55,12 +55,14 @@ export const RemoveItemModal: React.FC<RemoveItemModalProps> = ({
                       <div>amount: {crypto.amount}</div>
                       <div>total: ${crypto.total.toFixed(2)}</div>
                     </styles.BagWrapper>
-                    <styles.BagButtonWrapper>
-                      <SellCryptoButtonComponent
-                        handleClick={() => removeHandler(crypto.id)}
-                      />
-                    </styles.BagButtonWrapper>
                   </styles.BagContainer>
+                  <styles.BagButtonWrapper>
+                    <ButtonComponent
+                      onClick={() => removeHandler(crypto.id)}
+                      color="#d9565b"
+                      children="Sell"
+                    />
+                  </styles.BagButtonWrapper>
                   <styles.Divider></styles.Divider>
                 </>
               ))}

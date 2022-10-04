@@ -64,7 +64,7 @@ export const ModalPrice = styled.h2`
   font-weight: 500;
 `;
 
-export const ModalFormContainer = styled.div`
+export const ModalFormContainer = styled.form`
   display: flex;
   margin-top: 50px;
   justify-content: center;

@@ -30,14 +30,11 @@ export class BagService {
   }
 
   public static removeAddedCrypto(cryptoId: string) {
-    const addedCryptos = JSON.parse(localStorage.getItem(this.key) || "[]");
-    const index = addedCryptos.findIndex(
-      (crypto: AddedCrypto) => crypto.id === cryptoId
+    let addedCryptos = JSON.parse(localStorage.getItem(this.key) || "[]");
+
+    addedCryptos = addedCryptos.filter(
+      (crypto: AddedCrypto) => crypto.id !== cryptoId
     );
-    if (index < 0) {
-      return;
-    }
-    addedCryptos.splice(index, 1);
     localStorage.setItem(this.key, JSON.stringify(addedCryptos));
 
     return addedCryptos;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import { Crypto } from "../../../types/crypto";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { Crypto } from "../../types/crypto";
 
 import * as styles from "./style";
 
@@ -51,15 +51,18 @@ export const ViewProfileButtonComponent = (props: ButtonProps) => {
 
   return (
     <styles.ViewProfileButton onClick={() => clickHandler()}>
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        style={{ width: "24px", height: "24px" }}
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <title />
         <g data-name="briefcase simple" id="briefcase_simple">
           <path d="M20,5H17V4a3,3,0,0,0-3-3H10A3,3,0,0,0,7,4V5H4A3,3,0,0,0,1,8V20a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V8A3,3,0,0,0,20,5ZM9,4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V5H9ZM4,7H20c2.28,0,.65,6-4,6H13a1,1,0,0,0-2,0H8C3.36,13,1.72,7,4,7ZM20,21H4a1,1,0,0,1-1-1V12.89C5.4,15.34,7.86,15,11,15a1,1,0,0,0,2,0c3.17,0,5.61.33,8-2.11V20A1,1,0,0,1,20,21Z" />
         </g>
       </svg>
-      <div>
-        {total ? `$${total} ${differenceUsd}(${differencePercent}%)` : ""}
-      </div>
+      <div>{`$${total}`}</div>
+      <div>{`${differenceUsd}(${differencePercent}%)`}</div>
     </styles.ViewProfileButton>
   );
 };

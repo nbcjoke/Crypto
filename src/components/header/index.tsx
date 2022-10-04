@@ -4,7 +4,7 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useModal } from "../../hooks/useModal";
 import { RemoveItemModal } from "../modal/removeModal/RemoveItemModal";
-import { ViewProfileButtonComponent } from "../buttons/viewButton/ViewProfileButton";
+import { ViewProfileButtonComponent } from "../viewProfile/ViewProfileButton";
 
 import * as styles from "./style";
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { BagService } from "../../../hooks/useBag";
-import { BuyCryptoButtonComponent } from "../../buttons/buyButton/BuyCryptoButton";
 import { useActions } from "../../../hooks/useActions";
+import { ButtonComponent } from "../../button/Button";
 
 import { Crypto } from "../../../types/crypto";
 import * as styles from "./style";
@@ -41,6 +41,10 @@ export const AddItemModal: React.FC<AddItemModalProps> = ({
     return `${amount}*${price} = ${sum}`;
   };
 
+  const onSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+  };
+
   useEffect(() => {
     if (amount < 1) {
       hide();
@@ -74,15 +78,18 @@ export const AddItemModal: React.FC<AddItemModalProps> = ({
               <styles.ModalPrice>
                 ${parseFloat(crypto.priceUsd).toFixed(2)}
               </styles.ModalPrice>
-              <styles.ModalFormContainer>
+              <styles.ModalFormContainer onSubmit={(e) => onSubmit(e)}>
                 <styles.ModalInput
                   type="number"
                   name="amount"
                   value={amount}
                   onChange={changeHandler}
                 />
-                <BuyCryptoButtonComponent
-                  handleClick={() => addItem(crypto, amount)}
+                <ButtonComponent
+                  type="submit"
+                  onClick={() => addItem(crypto, amount)}
+                  color="#5baf6a"
+                  children="Buy crypto"
                 />
                 <div>{result()}</div>
               </styles.ModalFormContainer>

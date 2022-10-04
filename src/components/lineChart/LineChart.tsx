@@ -28,13 +28,13 @@ type LineChartProps = {
 };
 
 export const LineChart = ({ history }: LineChartProps) => {
-  const coinPrice = [];
-  const coinDate = [];
+  const coinPrice: any = [];
+  const coinDate: any = [];
 
-  for (let i = 0; i < history.length; i++) {
-    coinPrice.push(history[i].priceUsd);
-    coinDate.push(new Date(history[i].time).toLocaleDateString());
-  }
+  history.forEach((item) => {
+    coinPrice.push(item.priceUsd);
+    coinDate.push(new Date(item.time).toLocaleDateString());
+  });
 
   const data = {
     labels: coinDate,
